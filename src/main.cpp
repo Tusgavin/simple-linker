@@ -1,15 +1,8 @@
-#include <iostream>
-#include <vector>
 #include <fstream>
-#include <sstream>
-#include <string>
 #include <regex>
 
 #include "ligador.h"
 
-
-
-#define error(msg) { std::cout << "eRRor: " << msg << std::endl; exit(EXIT_FAILURE); }
 
 
 
@@ -26,7 +19,6 @@ std::vector<std::string> split(const std::string &s, char delim) {
     split(s, delim, elems);
     return elems;
 }
-
 
 
 int main(int argc, char *argv[]) {

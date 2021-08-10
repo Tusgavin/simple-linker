@@ -31,7 +31,7 @@ std::string Linker::concatenate_modules_in_code()
    std::string new_assembly_code = "";
    int reading_code_size = 0;
 
-   for (int i = 0; i < this->assembly_code_concatenated.length(); ++i)
+   for (size_t i = 0; i < this->assembly_code_concatenated.length(); ++i)
    {
       if (this->assembly_code_concatenated[i] == ':')
       {
@@ -39,7 +39,7 @@ std::string Linker::concatenate_modules_in_code()
 
          int end_of_label_index = -1;
 
-         for (int j = i; j < this->assembly_code_concatenated.length(); ++j)
+         for (size_t j = i; j < this->assembly_code_concatenated.length(); ++j)
          {
             if (this->assembly_code_concatenated[j] == ' ')
             {
@@ -67,7 +67,7 @@ std::string Linker::concatenate_modules_in_code()
          if (this->assembly_code_concatenated[i]) continue;
          else
          {
-            for (int j = i + 1; j < this->assembly_code_concatenated.length(); ++j)
+            for (size_t j = i + 1; j < this->assembly_code_concatenated.length(); ++j)
             {
                new_assembly_code += this->assembly_code_concatenated[j];
 

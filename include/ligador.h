@@ -5,6 +5,10 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <sstream>
+
+#define error(msg) { std::cout << "eRRor: " << msg << std::endl; exit(EXIT_FAILURE); }
+
 struct File
 {
    std::vector<std::pair<std::string, int>> labels_in_file;
