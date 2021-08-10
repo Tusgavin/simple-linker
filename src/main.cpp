@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
 
                 const char label_detector = ':';
 
-                if (line[0] == label_detector) {
+                if (line[0] == label_detector && line_index==0) {
                     line.erase(remove(line.begin(), line.end(), label_detector), line.end());
                     
                     std::vector<std::string> elems = split(line, ' ');
@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
                     label.first = elems[0];
                     label.second = std::stoi(elems[1]);
                     labels_in_file.push_back(label);
-                } else if (line_index == 0 && (isalpha(line[0]) || std::isdigit(line[0]))) {
+                } else if (line_index == 0 && std::isdigit(line[0])) {
                     line_index = 1;
 
                     std::vector<std::string> elems = split(line, ' ');
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
                     
                     assembly_code_size = std::stoi(elems[0]);
                     assembly_code_start = std::stoi(elems[3]);
-                } else if (line_index == 1) {
+                } else if (line_index == 1 && (std::isdigit(line[0]) || line[0] == label_detector)) {
                     line_index = -1;
                     assembly_code = line;
                 }
