@@ -9,6 +9,8 @@
 
 #define error(msg) { std::cout << "eRRor: " << msg << std::endl; exit(EXIT_FAILURE); }
 
+
+#define N 100
 struct File
 {
    std::vector<std::pair<std::string, int>> labels_in_file;
@@ -39,14 +41,18 @@ class Linker
 private:
    std::vector<File *> assembly_files;
    std::string assembly_code_concatenated;
+   std::string assembly_code_linked;
    std::map<std::string, std::pair<int, int>> labels_table;
 
 public:
    Linker(std::vector<File *> assembly_files);
    ~Linker();
 
-   std::string concatenate_modules_in_code();
+   void concatenate_modules_in_code();
    int get_position_of_label(std::pair<int, int> label_info);
+   int get_main_position();
+   int get_code_total_size();
+   void output();
 };
 
 #endif
