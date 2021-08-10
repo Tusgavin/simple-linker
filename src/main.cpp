@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
                     
                     assembly_code_size = std::stoi(elems[0]);
                     assembly_code_start = std::stoi(elems[3]);
-                } else if (line_index == 1  && (isalpha(line[0]) || std::isdigit(line[0]))) {
+                } else if (line_index == 1) {
                     line_index = -1;
                     assembly_code = line;
                 }
