@@ -34,11 +34,10 @@ void Linker::concatenate_modules_in_code()
 
    for (size_t i = 0; i < this->assembly_code_concatenated.length(); ++i)
    {
+
       if (this->assembly_code_concatenated[i] == ':')
       {
-         reading_code_size++;
-
-         int end_of_label_index = -1;
+         size_t end_of_label_index = -1;
 
          for (size_t j = i; j < this->assembly_code_concatenated.length(); ++j)
          {
@@ -49,37 +48,46 @@ void Linker::concatenate_modules_in_code()
             }
          }
 
-         std::string needed_label = this->assembly_code_concatenated.substr(i + 1, end_of_label_index);
+         std::string needed_label = this->assembly_code_concatenated.substr(i + 1, end_of_label_index - i - 1);
 
          std::pair<int, int> info_of_label = this->labels_table[needed_label];
 
          int position_of_label = this->get_position_of_label(info_of_label);
 
-         std::string stringfied_final_position = std::to_string(position_of_label - reading_code_size);
+
+         std::string stringfied_final_position = "";
+
+         (position_of_label > reading_code_size) ?
+            stringfied_final_position = std::to_string(position_of_label - reading_code_size - 1) :
+            stringfied_final_position = std::to_string(position_of_label - reading_code_size + 1);
 
          new_assembly_code += stringfied_final_position;
 
          i = end_of_label_index - 1;
+         reading_code_size++;
       }
       else
       {
          new_assembly_code += this->assembly_code_concatenated[i];
 
-         if (this->assembly_code_concatenated[i]) continue;
-         else
+         if (this->assembly_code_concatenated[i] == ' ') continue;
+         else 
          {
             for (size_t j = i + 1; j < this->assembly_code_concatenated.length(); ++j)
             {
-               new_assembly_code += this->assembly_code_concatenated[j];
-
                if (this->assembly_code_concatenated[j] == ' ')
                {
                   reading_code_size++;
                   i = j - 1;
                   break;
                }
-            }  
+               else
+               {
+                  new_assembly_code += this->assembly_code_concatenated[j];
+               }
+            }
          }
+
       }
    }
 

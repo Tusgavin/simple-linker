@@ -101,6 +101,8 @@ int main(int argc, char *argv[]) {
     }
 
     Linker* linker = new Linker(assembly_files);
+    linker->concatenate_modules_in_code();
+    linker->output();
 
     return 0;
 }
