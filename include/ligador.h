@@ -41,7 +41,8 @@ public:
    Linker(std::vector<File *> assembly_files);
    ~Linker();
 
-
+   std::string concatenate_modules_in_code();
+   int get_position_of_label(std::pair<int, int> label_info);
 };
 
 #endif
