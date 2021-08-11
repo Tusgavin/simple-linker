@@ -112,19 +112,11 @@ int Linker::get_position_of_label(std::pair<int, int> label_info)
 
 int Linker::get_main_position()
 {
-   for (auto it = this->labels_table.begin(); it != this->labels_table.end(); ++it)
-   {
-      if (it->first == "main")
-      {
-         std::pair<int, int> info_of_label = this->labels_table[it->first];
+   std::pair<int, int> info_of_label = this->labels_table["main"];
 
-         int position_of_label = this->get_position_of_label(info_of_label);
+   int position_of_label = this->get_position_of_label(info_of_label);
 
-         return position_of_label;
-      }
-   }
-
-   return -1;
+   return position_of_label;
 }
 
 int Linker::get_code_total_size()
@@ -141,6 +133,10 @@ int Linker::get_code_total_size()
 
 void Linker::output()
 {
+   std::cout << "MV-EXE" << std::endl;
+
+   std::cout << std::endl;
+
    std::string stringfied_program_details =
       std::to_string(this->get_code_total_size()) +
       " " +
