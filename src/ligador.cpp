@@ -55,11 +55,11 @@ void Linker::concatenate_modules_in_code()
          int position_of_label = this->get_position_of_label(info_of_label);
 
 
-         std::string stringfied_final_position = "";
+         std::string stringfied_final_position = std::to_string(position_of_label - reading_code_size - 1);
 
-         (position_of_label > reading_code_size) ?
-            stringfied_final_position = std::to_string(position_of_label - reading_code_size - 1) :
-            stringfied_final_position = std::to_string(position_of_label - reading_code_size + 1);
+         // (position_of_label > reading_code_size) ?
+         //    stringfied_final_position = std::to_string(position_of_label - reading_code_size - 1) :
+         //    stringfied_final_position = std::to_string(position_of_label - reading_code_size + 1);
 
          new_assembly_code += stringfied_final_position;
 
